@@ -1257,7 +1257,7 @@
   <div class="modal-overlay" id="sampleModal" onclick="closeSample(event)">
     <div class="modal-box">
       <button class="modal-close" onclick="closeSample()">&times;</button>
-      <p class="modal-eyebrow">Small Sample</p>
+      <p class="modal-eyebrow" id="modalEyebrow"></p>
       <h3 class="modal-title" id="modalTitle"></h3>
       <div class="modal-body" id="modalBody"></div>
     </div>
@@ -1347,7 +1347,8 @@
         goodreads: null,
         badge:   'Coming Soon',
         comingSoon: true,
-        coverOverride: 'covers/x-roads.jpg'
+        coverOverride: 'covers/x-roads.jpg',
+        description: `<strong>Jason's next adventure is entitled X-Roads. Pronounced Cross-Roads.</strong><br><br>In X-Roads, Jason finds himself completely defeated by his recent life events. Throughout the pages you'll see Jason searching for his identity, yearning for the confidence he once had which is fueled by self-doubt. He is confronted by Monique's son, an unparalleled conflict at the 16th Precinct and a case hampered by his emotional state which prevents his acute focus. Therefore, he is clueless as to how to solve the case. All leading up to an ending where he has to choose between survival and the right thing to do.`
       },
     ];
 
@@ -1395,15 +1396,21 @@
           ? `<button class="buy-btn sample-btn" onclick="openSample(${BOOKS.indexOf(b)})">Small Sample</button>`
           : '';
 
+        const descBtn = b.description
+          ? `<button class="buy-btn sample-btn" onclick="openDescription(${BOOKS.indexOf(b)})">Description</button>`
+          : '';
+
         const buyRow = b.comingSoon
           ? `<div class="book-buy-row">
                <span class="buy-btn" style="opacity:.45;cursor:default;pointer-events:none;">Amazon</span>
                <span class="buy-btn" style="opacity:.45;cursor:default;pointer-events:none;">Goodreads</span>
+               ${descBtn}
              </div>`
           : `<div class="book-buy-row">
                <a href="${b.amazon}" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
                <a href="${b.goodreads}" target="_blank" rel="noopener" class="buy-btn">Goodreads</a>
                ${sampleBtn}
+               ${descBtn}
              </div>`;
 
         return `
@@ -1482,11 +1489,22 @@
       }, 8000);
     });
 
+    /* ── Description modal ─────────────────────────────────────────── */
+    function openDescription(idx) {
+      const b = BOOKS[idx];
+      document.getElementById('modalEyebrow').textContent = 'Description';
+      document.getElementById('modalTitle').textContent   = b.title;
+      document.getElementById('modalBody').innerHTML      = b.description;
+      document.getElementById('sampleModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
     /* ── Sample modal ──────────────────────────────────────────────── */
     function openSample(idx) {
       const b = BOOKS[idx];
-      document.getElementById('modalTitle').textContent = b.title;
-      document.getElementById('modalBody').innerHTML   = b.sample;
+      document.getElementById('modalEyebrow').textContent = 'Small Sample';
+      document.getElementById('modalTitle').textContent   = b.title;
+      document.getElementById('modalBody').innerHTML      = b.sample;
       document.getElementById('sampleModal').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
