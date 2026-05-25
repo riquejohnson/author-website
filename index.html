@@ -737,6 +737,31 @@
       .comment-form-row { grid-template-columns: 1fr; }
     }
 
+    .pending-notice {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: rgba(201,168,76,.1);
+      border: 1px solid rgba(201,168,76,.35);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+
+    .pending-icon { font-size: 2rem; line-height: 1; }
+
+    .pending-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: .35rem;
+    }
+
+    .pending-sub {
+      font-size: .88rem;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+
     /* ── Newsletter ──────────────────────────────────────────────────── */
     #contact {
       background: var(--dark);
@@ -1175,6 +1200,14 @@
         <textarea class="comment-input comment-textarea" id="commenterText" placeholder="Share your thoughts..." required></textarea>
         <button type="submit" class="btn btn-gold">Submit Comment</button>
       </form>
+
+      <div class="pending-notice" id="pendingNotice" style="display:none;">
+        <div class="pending-icon">✉️</div>
+        <div>
+          <p class="pending-title">Comment Received — Thank You!</p>
+          <p class="pending-sub">Your comment is awaiting approval and will appear once reviewed by Rique Johnson.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1435,20 +1468,18 @@
         return;
       }
 
-      const card = document.createElement('div');
-      card.className = 'comment-card';
-      card.innerHTML = `
-        <div class="comment-stars">★★★★★</div>
-        <p class="comment-text">"${text}"</p>
-        <div class="comment-meta">
-          <span class="comment-name">— ${name}</span>
-          ${book ? `<span class="comment-book">${book}</span>` : ''}
-        </div>`;
+      // Show pending notice instead of posting live
+      const form      = document.getElementById('commentForm');
+      const notice    = document.getElementById('pendingNotice');
+      form.style.display    = 'none';
+      notice.style.display  = 'flex';
 
-      document.getElementById('commentsGrid').appendChild(card);
-      e.target.reset();
-      showToast('Thank you for your comment! ✨');
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Reset after 8 seconds so they can submit again if needed
+      setTimeout(() => {
+        form.style.display   = '';
+        notice.style.display = 'none';
+        e.target.reset();
+      }, 8000);
     });
 
     /* ── Sample modal ──────────────────────────────────────────────── */
