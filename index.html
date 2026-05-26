@@ -1525,6 +1525,11 @@
       }, 600);
     }
 
+    document.querySelector('a[href="#about"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      navTransition('about', 'Bio', 'Rique Johnson');
+    });
+
     document.querySelector('a[href="#books"]').addEventListener('click', function(e) {
       e.preventDefault();
       navTransition('books', 'The Series', 'featuring Jason Jerrard');
