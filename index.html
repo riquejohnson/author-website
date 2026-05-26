@@ -854,6 +854,56 @@
 
     footer a:hover { text-decoration: underline; }
 
+    /* ── Series Transition Overlay ──────────────────────────────────── */
+    .series-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 998;
+      background: rgba(13,13,13,.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+
+    .series-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .series-overlay-label {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .25s ease .18s, transform .25s ease .18s;
+    }
+
+    .series-overlay-sub {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,.5);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .25s ease .28s, transform .25s ease .28s;
+    }
+
+    .series-overlay.active .series-overlay-label,
+    .series-overlay.active .series-overlay-sub {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── Toast ───────────────────────────────────────────────────────── */
     .toast {
       position: fixed;
@@ -1270,6 +1320,12 @@
     <a href="mailto:contact@riquejohnson.com">contact@riquejohnson.com</a>
   </footer>
 
+  <!-- ── Series Transition Overlay ─────────────────────────────────── -->
+  <div class="series-overlay" id="seriesOverlay">
+    <span class="series-overlay-label">The Series</span>
+    <span class="series-overlay-sub">featuring Jason Jerrard</span>
+  </div>
+
   <!-- ── Toast ───────────────────────────────────────────────────────── -->
   <div class="toast" id="toast"></div>
 
@@ -1453,6 +1509,18 @@
         </article>`;
       }).join('');
     }
+
+    /* ── Series transition ─────────────────────────────────────────── */
+    document.querySelector('a[href="#books"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('navLinks').classList.remove('open');
+      const overlay = document.getElementById('seriesOverlay');
+      overlay.classList.add('active');
+      setTimeout(() => {
+        document.getElementById('books').scrollIntoView({ behavior: 'instant' });
+        setTimeout(() => overlay.classList.remove('active'), 350);
+      }, 600);
+    });
 
     /* ── Nav toggle (mobile) ───────────────────────────────────────── */
     document.getElementById('navToggle').addEventListener('click', () => {
