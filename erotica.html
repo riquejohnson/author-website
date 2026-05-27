@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erotica — Rique Johnson</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d0d0d; --paper: #faf8f4; --gold: #c9a84c; --gold-lt: #e8c96a;
+      --dark: #111827; --dark2: #1f2937; --muted: #6b7280; --accent: #8b1a1a;
+      --radius: 8px; --shadow: 0 4px 24px rgba(0,0,0,.18); --shadow-lg: 0 12px 48px rgba(0,0,0,.28);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4%; background: rgba(13,13,13,.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,.25);
+    }
+    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--gold); letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #e5e7eb; font-size: .88rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all .3s; }
+    section { padding: 7rem 4% 6rem; background: var(--dark); }
+    .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3rem); font-weight: 700; line-height: 1.15; color: #f9fafb; margin-bottom: 1rem; }
+    .section-sub { color: #9ca3af; max-width: 560px; font-size: 1.05rem; }
+    .section-header { margin-bottom: 3.5rem; }
+    .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 2rem; }
+    .book-card { background: var(--dark2); border-radius: 12px; overflow: hidden; transition: transform .3s, box-shadow .3s; cursor: pointer; border: 1px solid rgba(255,255,255,.06); }
+    .book-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .book-cover-wrap { position: relative; aspect-ratio: 2/3; overflow: hidden; background: #374151; }
+    .book-cover-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .book-card:hover .book-cover-wrap img { transform: scale(1.05); }
+    .book-cover-wrap .cover-placeholder { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; background: linear-gradient(135deg,#1f2937,#374151); }
+    .cover-placeholder .cp-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); line-height: 1.3; margin-bottom: .5rem; }
+    .cover-placeholder .cp-author { font-size: .75rem; color: #9ca3af; }
+    .book-info { padding: 1.25rem 1rem 1.5rem; }
+    .book-year { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: .35rem; }
+    .book-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: #f3f4f6; line-height: 1.3; margin-bottom: .5rem; }
+    .book-badge { position: absolute; top: .6rem; left: .6rem; background: var(--gold); color: var(--dark); font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .55rem; border-radius: 4px; z-index: 2; }
+    .book-buy-row { padding: 0 1rem 1.25rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .buy-btn { font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .4rem .85rem; border-radius: 4px; border: 1px solid rgba(201,168,76,.4); color: var(--gold); transition: all .2s; }
+    .buy-btn:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .sample-btn { background: rgba(201,168,76,.12); }
+    .sample-btn:hover { background: var(--gold); color: var(--dark); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 500; align-items: center; justify-content: center; padding: 1.5rem; backdrop-filter: blur(4px); }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: var(--paper); border-radius: 14px; padding: 2.5rem 2.5rem 2rem; max-width: 680px; width: 100%; position: relative; box-shadow: 0 24px 80px rgba(0,0,0,.4); border-top: 4px solid var(--gold); max-height: 85vh; overflow-y: auto; }
+    .modal-close { position: absolute; top: 1rem; right: 1.25rem; background: none; border: none; font-size: 1.6rem; color: var(--muted); cursor: pointer; line-height: 1; transition: color .2s; }
+    .modal-close:hover { color: var(--dark); }
+    .modal-eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; }
+    .modal-body p { font-size: 1rem; color: #374151; line-height: 1.85; margin-bottom: 1.25rem; }
+    .modal-body p:last-child { margin-bottom: 0; }
+    footer { background: #090d13; padding: 2rem 4%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(201,168,76,.15); }
+    footer p { font-size: .82rem; color: #4b5563; }
+    footer a { color: var(--gold); font-size: .82rem; }
+    footer a:hover { text-decoration: underline; }
+    .series-overlay { position: fixed; inset: 0; z-index: 998; background: rgba(13,13,13,.95); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+    .series-overlay.active { opacity: 1; pointer-events: all; }
+    .series-overlay-label { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3.5rem); font-weight: 700; color: var(--gold); letter-spacing: .18em; text-transform: uppercase; opacity: 0; transform: translateY(14px); transition: opacity .25s ease .18s, transform .25s ease .18s; }
+    .series-overlay-sub { font-size: .8rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: rgba(201,168,76,.5); opacity: 0; transform: translateY(8px); transition: opacity .25s ease .28s, transform .25s ease .28s; }
+    .series-overlay.active .series-overlay-label, .series-overlay.active .series-overlay-sub { opacity: 1; transform: translateY(0); }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--dark2); color: #f9fafb; padding: 1rem 1.5rem; border-radius: var(--radius); border-left: 4px solid var(--gold); font-size: .9rem; box-shadow: var(--shadow); transform: translateY(120%); transition: transform .4s cubic-bezier(.175,.885,.32,1.275); z-index: 999; }
+    .toast.show { transform: translateY(0); }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: rgba(13,13,13,.97); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid rgba(201,168,76,.2); }
+      .books-grid { grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">Rique Johnson</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="bio.html">Bio</a></li>
+      <li><a href="series.html">The Series</a></li>
+      <li><a href="erotica.html">Erotica</a></li>
+      <li><a href="poetry.html">Poetry</a></li>
+      <li><a href="comments.html">Comments</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <section id="books">
+    <div id="after-dark" class="section-header">
+      <p class="section-label">Erotic Literature</p>
+      <h2 class="section-title" style="color:#cc0000; font-size:clamp(1rem,2vw,1.4rem);">After Dark &amp; After Hours</h2>
+      <p class="section-sub">Bold, sensual fiction exploring passion, desire, and the complexity of love — published by Simon &amp; Schuster.</p>
+    </div>
+    <div class="books-grid" id="booksGrid"></div>
+  </section>
+
+  <footer>
+    <p>© <span id="yr"></span> Rique Johnson. All rights reserved.</p>
+    <a href="mailto:rique@riquejohnson.com">rique@riquejohnson.com</a>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <div class="series-overlay" id="seriesOverlay">
+    <span class="series-overlay-label"></span>
+    <span class="series-overlay-sub"></span>
+  </div>
+
+  <div class="modal-overlay" id="sampleModal" onclick="closeSample(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeSample()">&times;</button>
+      <p class="modal-eyebrow" id="modalEyebrow"></p>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const BOOKS = [
+      { isbn:'9781416551164', title:"Every Woman's Man", year:2010, pages:304, pub:'Simon & Schuster', blurb:'The story of a man whose charm becomes his greatest weapon — and his most dangerous flaw.', amazon:'https://www.amazon.com/dp/1416551166', goodreads:"https://www.goodreads.com/search?q=Every+Woman%27s+Man+Rique+Johnson", coverOverride:'covers/every-womans-man.gif' },
+      { isbn:'9781416561828', title:'Sistergirls.com', year:2007, pages:400, pub:'Simon & Schuster', blurb:"A bold anthology featuring Rique Johnson alongside fellow authors — where women's voices, lives, and secrets converge online and off.", amazon:'https://www.amazon.com/dp/1416561820', goodreads:'https://www.goodreads.com/search?q=Sistergirls.com', badge:'Anthology', coverOverride:'covers/sister-girls.avif' },
+      { isbn:'9780739498088', title:'Another Time, Another Place', year:2008, pages:null, pub:'Simon & Schuster', blurb:'A collection of novellas that traverse passion, regret, and the roads not taken across time and place.', amazon:'https://www.amazon.com/dp/0739498088', goodreads:'https://www.goodreads.com/search?q=Another+Time+Another+Place+Rique+Johnson', badge:'Anthology', coverOverride:'covers/another-time-another-place.webp', sample:`<p>Ariel Johnson turned away from watching the rain dance on the window panes to respond to her husband's sexual suggestion. The bright smile she returned to him accepted his invitation. She greeted the devilish smile from Steven with enthusiasm. Ariel was a woman two years younger than her forty-seven year old mate. Her hair was pulled back into a long ponytail. Her skin was flawless except for a scar just above her left eyebrow. Ariel took one step toward her husband and paused as a sense of déjà vu overcame her.</p><p>The flickering light coming through the window from behind, her husband's gaze, everything right down to the waterfall like pattern on the comforter that flowed from the bed to the floor felt as though she had lived through it before. She shook off the feeling and skipped toward the bed. After all, Steven Johnson was a master at pleasing a woman. He was the artist, she was his canvas. This was what she believed. This was how he made her feel. The thunder roared, Ariel screamed and jumped into the arms of her man.</p>` },
+    ];
+
+    function renderBooks() {
+      document.getElementById('booksGrid').innerHTML = BOOKS.map((b,i) => {
+        const coverHtml = `<img src="${b.coverOverride}" alt="Cover of ${b.title}" loading="${i<2?'eager':'lazy'}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="cover-placeholder" style="display:none"><div class="cp-title">${b.title}</div><div class="cp-author">Rique Johnson</div></div>`;
+        const sampleBtn = b.sample ? `<button class="buy-btn sample-btn" onclick="openSample(${i})">Small Sample</button>` : '';
+        const buyRow    = `<div class="book-buy-row"><a href="${b.amazon}" target="_blank" rel="noopener" class="buy-btn">Amazon</a><a href="${b.goodreads}" target="_blank" rel="noopener" class="buy-btn">Goodreads</a>${sampleBtn}</div>`;
+        return `<article class="book-card" tabindex="0"><div class="book-cover-wrap">${b.badge?`<span class="book-badge">${b.badge}</span>`:''} ${coverHtml}</div><div class="book-info"><div class="book-year">${b.year?b.year+(b.pages?' &middot; '+b.pages+' pp.':''):''}</div><div class="book-title">${b.title}</div><p style="color:#9ca3af;font-size:.8rem;margin-top:.4rem;">${b.blurb}</p></div>${buyRow}</article>`;
+      }).join('');
+    }
+
+    function openSample(idx) {
+      const b = BOOKS[idx];
+      document.getElementById('modalEyebrow').textContent = 'Small Sample';
+      document.getElementById('modalTitle').textContent   = b.title;
+      document.getElementById('modalBody').innerHTML      = b.sample;
+      document.getElementById('sampleModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSample(e) {
+      if (e && e.target !== document.getElementById('sampleModal')) return;
+      document.getElementById('sampleModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSample(); });
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+    document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+    function navTransition(url, label, sub) {
+      document.getElementById('navLinks').classList.remove('open');
+      const o = document.getElementById('seriesOverlay');
+      o.querySelector('.series-overlay-label').textContent = label;
+      o.querySelector('.series-overlay-sub').textContent = sub;
+      o.classList.add('active');
+      setTimeout(() => { window.location.href = url; }, 600);
+    }
+    document.querySelector('a[href="bio.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('bio.html','Bio','Rique Johnson'); });
+    document.querySelector('a[href="series.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('series.html','The Series','featuring Jason Jerrard'); });
+    document.querySelector('a[href="erotica.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('erotica.html','Erotica','After Dark & After Hours'); });
+    document.querySelector('a[href="poetry.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('poetry.html','Poetry','The Written Word'); });
+    document.querySelector('a[href="comments.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('comments.html','Comments','From the Readers'); });
+    document.querySelector('a[href="newsletter.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('newsletter.html','Newsletter','Stay Connected'); });
+
+    renderBooks();
+  </script>
+</body>
+</html>

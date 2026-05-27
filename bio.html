@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio — Rique Johnson</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d0d0d; --paper: #faf8f4; --gold: #c9a84c; --gold-lt: #e8c96a;
+      --dark: #111827; --dark2: #1f2937; --muted: #6b7280; --accent: #8b1a1a;
+      --radius: 8px; --shadow: 0 4px 24px rgba(0,0,0,.18); --shadow-lg: 0 12px 48px rgba(0,0,0,.28);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4%; background: rgba(13,13,13,.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,.25); transition: padding .3s;
+    }
+    .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--gold); letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #e5e7eb; font-size: .88rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all .3s; }
+    .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.15; color: var(--dark); margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); max-width: 560px; font-size: 1.05rem; }
+    #about {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: center; max-width: 1200px; margin: 0 auto;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap::before {
+      content: ''; position: absolute; inset: -12px -12px 12px 12px;
+      border: 2px solid var(--gold); border-radius: 12px; z-index: 0;
+    }
+    .about-img-wrap img { width: 100%; border-radius: 10px; position: relative; z-index: 1; object-fit: cover; aspect-ratio: 3/4; }
+    .about-img-wrap .about-img-placeholder {
+      width: 100%; aspect-ratio: 3/4; border-radius: 10px;
+      background: linear-gradient(135deg, #1f2937, #374151);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .about-img-placeholder .initials { font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .about-img-placeholder .name-under { font-size: .9rem; color: #9ca3af; letter-spacing: .1em; margin-top: .5rem; }
+    .about-text .section-sub { max-width: 100%; margin-bottom: 1.5rem; }
+    .about-text p + p { margin-top: 1rem; }
+    .about-stats { display: flex; gap: 2rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.12); }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: #f9fafb; line-height: 1; }
+    .stat-label { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: .3rem; }
+    #about .section-title { color: #f9fafb; }
+    #about .section-sub   { color: #9ca3af; }
+    footer {
+      background: #090d13; padding: 2rem 4%; display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid rgba(201,168,76,.15);
+    }
+    footer p { font-size: .82rem; color: #4b5563; }
+    footer a { color: var(--gold); font-size: .82rem; }
+    footer a:hover { text-decoration: underline; }
+    .series-overlay {
+      position: fixed; inset: 0; z-index: 998; background: rgba(13,13,13,.95);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1rem; opacity: 0; pointer-events: none; transition: opacity .35s ease;
+    }
+    .series-overlay.active { opacity: 1; pointer-events: all; }
+    .series-overlay-label {
+      font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700; color: var(--gold); letter-spacing: .18em; text-transform: uppercase;
+      opacity: 0; transform: translateY(14px); transition: opacity .25s ease .18s, transform .25s ease .18s;
+    }
+    .series-overlay-sub {
+      font-size: .8rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase;
+      color: rgba(201,168,76,.5); opacity: 0; transform: translateY(8px);
+      transition: opacity .25s ease .28s, transform .25s ease .28s;
+    }
+    .series-overlay.active .series-overlay-label,
+    .series-overlay.active .series-overlay-sub { opacity: 1; transform: translateY(0); }
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; background: var(--dark2); color: #f9fafb;
+      padding: 1rem 1.5rem; border-radius: var(--radius); border-left: 4px solid var(--gold);
+      font-size: .9rem; box-shadow: var(--shadow); transform: translateY(120%);
+      transition: transform .4s cubic-bezier(.175,.885,.32,1.275); z-index: 999;
+    }
+    .toast.show { transform: translateY(0); }
+    @media (max-width: 900px) {
+      #about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 6%; }
+      .about-img-wrap::before { display: none; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0;
+        background: rgba(13,13,13,.97); padding: 2rem; gap: 1.5rem;
+        border-bottom: 1px solid rgba(201,168,76,.2);
+      }
+      .about-stats { gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">Rique Johnson</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="bio.html">Bio</a></li>
+      <li><a href="series.html">The Series</a></li>
+      <li><a href="erotica.html">Erotica</a></li>
+      <li><a href="poetry.html">Poetry</a></li>
+      <li><a href="comments.html">Comments</a></li>
+      <li><a href="newsletter.html">Newsletter</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div style="background:var(--dark); padding:7rem 4% 6rem;">
+    <div id="about">
+      <div class="about-img-wrap">
+        <img
+          src="covers/rique-johnson.jpg"
+          alt="Rique Johnson — Author"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+        />
+        <div class="about-img-placeholder" style="display:none;">
+          <div class="initials">RJ</div>
+          <div class="name-under">Rique Johnson</div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="section-label">The Author</p>
+        <h2 class="section-title">Rique Johnson</h2>
+        <div class="section-sub">
+          <p>
+            Rique Johnson is a Fairfax, VA–based novelist whose work splits down the middle: hardboiled detective fiction on one side, unapologetic erotic literature on the other. Both halves share the same compass — characters who want too much, and what it costs them.
+          </p>
+          <p>
+            His Detective Jason Jerrard series — built around Love and Justice, Whispers From a Troubled Heart, and A Dangerous Return — is set in the fictional Virginia City and follows a man whose job intertwines with his personal life in an emotional way. The forthcoming X-Roads brings Jerrard to the worst kind of intersection.
+          </p>
+          <p>
+            A prolific novelist with six published works, Johnson continues to craft fiction that challenges, moves, and captivates. His imagination comes across as creative, bold, and sometimes edgy. Rique is often called a storyteller. He writes so that the readers can place themselves into the pages of the story and make the pages play like a movie in their own imagination. He is a passionate writer who is unafraid to reveal the sensitivity of a male or himself, thus, invoking an emotional response from the readers.
+          </p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Novels</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Novellas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2,100<span style="font-size:1.2rem">+</span></div>
+            <div class="stat-label">Pages Written</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2003</div>
+            <div class="stat-label">Debut Year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© <span id="yr"></span> Rique Johnson. All rights reserved.</p>
+    <a href="mailto:rique@riquejohnson.com">rique@riquejohnson.com</a>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <div class="series-overlay" id="seriesOverlay">
+    <span class="series-overlay-label"></span>
+    <span class="series-overlay-sub"></span>
+  </div>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+    function navTransition(url, label, sub) {
+      document.getElementById('navLinks').classList.remove('open');
+      const o = document.getElementById('seriesOverlay');
+      o.querySelector('.series-overlay-label').textContent = label;
+      o.querySelector('.series-overlay-sub').textContent = sub;
+      o.classList.add('active');
+      setTimeout(() => { window.location.href = url; }, 600);
+    }
+    document.querySelector('a[href="bio.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('bio.html','Bio','Rique Johnson'); });
+    document.querySelector('a[href="series.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('series.html','The Series','featuring Jason Jerrard'); });
+    document.querySelector('a[href="erotica.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('erotica.html','Erotica','After Dark & After Hours'); });
+    document.querySelector('a[href="poetry.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('poetry.html','Poetry','The Written Word'); });
+    document.querySelector('a[href="comments.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('comments.html','Comments','From the Readers'); });
+    document.querySelector('a[href="newsletter.html"]')?.addEventListener('click', e => { e.preventDefault(); navTransition('newsletter.html','Newsletter','Stay Connected'); });
+  </script>
+</body>
+</html>
