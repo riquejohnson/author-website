@@ -85,7 +85,9 @@
     <p class="section-sub">Be the first to hear about new releases, behind-the-scenes stories, events, and exclusive content.</p>
 
     <form class="newsletter-form" id="newsletterForm" novalidate>
-      <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+      <input type="hidden" name="_subject" value="New Newsletter Signup" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
       <button type="submit" class="btn btn-gold">Subscribe</button>
     </form>
 
@@ -127,10 +129,17 @@
       setTimeout(() => t.classList.remove('show'), 3800);
     }
 
-    document.getElementById('newsletterForm').addEventListener('submit', e => {
+    document.getElementById('newsletterForm').addEventListener('submit', async e => {
       e.preventDefault();
       const input = e.target.querySelector('input[type="email"]');
       if (!input.value || !input.value.includes('@')) { showToast('Please enter a valid email address.'); return; }
+      try {
+        await fetch('https://formsubmit.co/ajax/rique@riquejohnson.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(e.target)
+        });
+      } catch(err) {}
       showToast('Thank you for subscribing!');
       input.value = '';
     });

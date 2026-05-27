@@ -155,11 +155,13 @@
     <div class="comment-form-wrap">
       <h3 class="comment-form-title">Leave a Comment</h3>
       <form class="comment-form" id="commentForm" novalidate>
+        <input type="hidden" name="_subject" value="New Reader Comment — Awaiting Approval" />
+        <input type="hidden" name="_captcha" value="false" />
         <div class="comment-form-row">
-          <input type="text" class="comment-input" id="commenterName" placeholder="Your name" required />
-          <input type="text" class="comment-input" id="commenterBook" placeholder="Book title (optional)" />
+          <input type="text" class="comment-input" id="commenterName" name="name" placeholder="Your name" required />
+          <input type="text" class="comment-input" id="commenterBook" name="book" placeholder="Book title (optional)" />
         </div>
-        <textarea class="comment-input comment-textarea" id="commenterText" placeholder="Share your thoughts..." required></textarea>
+        <textarea class="comment-input comment-textarea" id="commenterText" name="comment" placeholder="Share your thoughts..." required></textarea>
         <button type="submit" class="btn btn-gold">Submit Comment</button>
       </form>
       <div class="pending-notice" id="pendingNotice" style="display:none;">
@@ -194,11 +196,18 @@
       setTimeout(() => t.classList.remove('show'), 3800);
     }
 
-    document.getElementById('commentForm').addEventListener('submit', e => {
+    document.getElementById('commentForm').addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('commenterName').value.trim();
       const text = document.getElementById('commenterText').value.trim();
       if (!name || !text) { showToast('Please enter your name and comment.'); return; }
+      try {
+        await fetch('https://formsubmit.co/ajax/rique@riquejohnson.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(e.target)
+        });
+      } catch(err) {}
       document.getElementById('commentForm').style.display = 'none';
       document.getElementById('pendingNotice').style.display = 'flex';
       setTimeout(() => {
