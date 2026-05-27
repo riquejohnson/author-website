@@ -854,6 +854,20 @@
 
     footer a:hover { text-decoration: underline; }
 
+    /* ── Dark-background overrides (About & Poetry) ─────────────────── */
+    #about .section-title        { color: #f9fafb; }
+    #about .section-sub          { color: #9ca3af; }
+    #about .stat-num             { color: #f9fafb; }
+    #about .about-stats          { border-top-color: rgba(255,255,255,.12); }
+    #about .about-img-placeholder { background: linear-gradient(135deg, #1f2937, #374151); }
+    #about .name-under           { color: #9ca3af; }
+
+    #poetry .section-title       { color: #f9fafb; }
+    #poetry .section-sub         { color: #9ca3af; }
+    #poetry .poem-card           { background: var(--dark2); border-color: rgba(255,255,255,.07); }
+    #poetry .poem-title          { color: #f3f4f6; }
+    #poetry .poem-body p         { color: #d1d5db; }
+
     /* ── Series Transition Overlay ──────────────────────────────────── */
     .series-overlay {
       position: fixed;
@@ -1069,7 +1083,7 @@
   </header>
 
   <!-- ── About ───────────────────────────────────────────────────────── -->
-  <div style="background:var(--paper); padding:6rem 4%;">
+  <div style="background:var(--dark); padding:6rem 4%;">
     <div id="about">
       <div class="about-img-wrap">
         <img
@@ -1121,7 +1135,7 @@
   </div>
 
   <!-- ── Quote Band ───────────────────────────────────────────────────── -->
-  <div class="quote-band">
+  <div class="quote-band" style="background:var(--dark); border-top:1px solid rgba(201,168,76,.15); border-bottom:1px solid rgba(201,168,76,.15);">
     <blockquote>
       "Every story is a journey into the depths of the human soul — where love and justice are never simple, and the heart always pays the price."
     </blockquote>
@@ -1152,7 +1166,7 @@
   </section>
 
   <!-- ── Poetry ──────────────────────────────────────────────────────── -->
-  <section id="poetry" style="background:var(--paper);">
+  <section id="poetry" style="background:var(--dark);">
     <div class="section-header">
       <p class="section-label">The Written Word</p>
       <h2 class="section-title">Poetry</h2>
