@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Series — Rique Johnson</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>The Series â€” Rique Johnson</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -124,18 +124,18 @@
   <section id="books">
     <div class="quote-band">
       <blockquote>"Masterfully plotted and artfully rendered... combines the action of a thriller with the deeply felt emotions of a love story."</blockquote>
-      <cite>— Simon &amp; Schuster</cite>
+      <cite>â€” Simon &amp; Schuster</cite>
     </div>
     <div class="section-header">
       <p class="section-label">Mystery &amp; Thriller</p>
       <h3 class="section-title" style="color:#cc0000; font-size:clamp(1.1rem,2.5vw,1.6rem);">books featuring Jason Jerrard</h3>
-      <p class="section-sub">Gripping detective fiction spanning love, justice, and danger — published by Simon &amp; Schuster.</p>
+      <p class="section-sub">Gripping detective fiction spanning love, justice, and danger â€” published by Simon &amp; Schuster.</p>
     </div>
     <div class="books-grid" id="booksGrid"></div>
   </section>
 
   <footer>
-    <p>© <span id="yr"></span> Rique Johnson. All rights reserved.</p>
+    <p>Â© <span id="yr"></span> Rique Johnson. All rights reserved.</p>
     <a href="mailto:rique@riquejohnson.com">rique@riquejohnson.com</a>
   </footer>
 
@@ -158,8 +158,8 @@
     const BOOKS = [
       { isbn:'9781416551195', title:'Love and Justice', year:2007, pages:336, pub:'Simon & Schuster', blurb:'A gripping tale set in Virginia where love and the pursuit of justice pull a man in opposite directions.', amazon:'https://www.amazon.com/dp/1416551190', goodreads:'https://www.goodreads.com/book/show/1000858', coverOverride:'covers/love-and-justice.jpg' },
       { isbn:'9781416554462', title:'Whispers from a Troubled Heart', year:2007, pages:416, pub:'Simon & Schuster', blurb:'A powerful journey through heartbreak, redemption, and the secrets we keep from those we love most.', amazon:'https://www.amazon.com/dp/1416554467', goodreads:'https://www.goodreads.com/search?q=Whispers+from+a+Troubled+Heart+Rique+Johnson', coverOverride:'covers/whispers-from-a-troubled-heart.jpg' },
-      { isbn:'9781439122594', title:'A Dangerous Return', year:2010, pages:336, pub:'Simon & Schuster', blurb:'When the past comes back with deadly intentions, no one is safe — and nothing is what it seems.', amazon:'https://www.amazon.com/dp/1439122598', goodreads:'https://www.goodreads.com/search?q=Dangerous+Return+Rique+Johnson', coverOverride:'covers/dangerous-return.jpg' },
-      { isbn:null, title:'X-Roads', year:null, pages:null, pub:null, blurb:'A new novel from Rique Johnson — coming soon.', amazon:null, goodreads:null, badge:'Coming Soon', comingSoon:true, coverOverride:'covers/x-roads.jpg', description:`<strong>Jason's next adventure is entitled X-Roads. Pronounced Cross-Roads.</strong><br><br>Jerrard is at his lowest — defeated, grief-stricken, and refusing to face it. His confidence, once unshakeable, has gone silent. Monique's son is a constant wound. The Mayor is waging war over the fate of the 16th Precinct. With emotional chaos closing in from every direction, Jason must choose between the one thing that keeps him standing — and the right thing to do.` },
+      { isbn:'9781439122594', title:'A Dangerous Return', year:2010, pages:336, pub:'Simon & Schuster', blurb:'When the past comes back with deadly intentions, no one is safe â€” and nothing is what it seems.', amazon:'https://www.amazon.com/dp/1439122598', goodreads:'https://www.goodreads.com/search?q=Dangerous+Return+Rique+Johnson', coverOverride:'covers/dangerous-return.jpg' },
+      { isbn:null, title:'X-Roads', year:null, pages:null, pub:null, blurb:'A new novel from Rique Johnson â€” coming soon.', amazon:null, goodreads:null, badge:'Coming Soon', comingSoon:true, coverOverride:'covers/x-roads.jpg', description:`<strong>Jason's next adventure is entitled X-Roads. Pronounced Cross-Roads.</strong><br><br>Jerrard is at his lowest â€” defeated, grief-stricken, and refusing to face it. His confidence, once unshakeable, has gone silent. Monique's son is a constant wound. The Mayor is waging war over the fate of the 16th Precinct. With emotional chaos closing in from every direction, Jason must choose between the one thing that keeps him standing â€” and the right thing to do.` },
     ];
 
     function renderBooks() {
@@ -168,8 +168,8 @@
         const cardClass  = b.comingSoon ? 'coming-soon' : '';
         const coverHtml  = b.comingSoon
           ? b.coverOverride
-            ? `<img src="${b.coverOverride}" alt="Cover of ${b.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="coming-soon-cover" style="display:none"><div class="cs-icon">📖</div><div class="cs-title">${b.title}</div><div class="cs-sub">Coming Soon</div></div>`
-            : `<div class="coming-soon-cover"><div class="cs-icon">📖</div><div class="cs-title">${b.title}</div><div class="cs-sub">Coming Soon</div></div>`
+            ? `<img src="${b.coverOverride}" alt="Cover of ${b.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="coming-soon-cover" style="display:none"><div class="cs-icon">ðŸ“–</div><div class="cs-title">${b.title}</div><div class="cs-sub">Coming Soon</div></div>`
+            : `<div class="coming-soon-cover"><div class="cs-icon">ðŸ“–</div><div class="cs-title">${b.title}</div><div class="cs-sub">Coming Soon</div></div>`
           : `<img src="${b.coverOverride}" alt="Cover of ${b.title}" loading="${i<2?'eager':'lazy'}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="cover-placeholder" style="display:none"><div class="cp-title">${b.title}</div><div class="cp-author">Rique Johnson</div></div>`;
         const descBtn   = b.description ? `<button class="buy-btn sample-btn" onclick="openDescription(${i})">Description</button>` : '';
         const sampleBtn = b.sample      ? `<button class="buy-btn sample-btn" onclick="openSample(${i})">Small Sample</button>` : '';
@@ -226,3 +226,5 @@
   </script>
 </body>
 </html>
+
+

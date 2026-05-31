@@ -23,6 +23,7 @@
 <meta name="twitter:title" content="Rique Johnson — Author">
 <meta name="twitter:description" content="Official website of Rique Johnson — author of the Jason Jerrard crime series, standalone novels, and poetry. Published by Simon &amp; Schuster.">
 <meta name="twitter:image" content="https://riquejohnson.com/rique-johnson.jpg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1300,6 +1301,83 @@
     .work-item-horizontal .work-spine { width: 100% !important; aspect-ratio: 3/2; }
   }
 
+  /* ── X-ROADS CTA ── */
+  .xroads-cta {
+    padding: 4rem 4%;
+    background: linear-gradient(135deg, rgba(139,26,26,0.12) 0%, rgba(10,18,38,0.4) 100%);
+    border-top: 1px solid rgba(139,26,26,0.3);
+    border-bottom: 1px solid rgba(139,26,26,0.3);
+  }
+  .xroads-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .xroads-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 1rem;
+    background: var(--crimson);
+    color: #fff;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+  }
+  .xroads-cover {
+    width: 180px;
+    flex-shrink: 0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,26,26,0.3);
+    position: relative;
+  }
+  .xroads-text { flex: 1; position: relative; }
+  .xroads-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem,5vw,3.5rem);
+    font-weight: 900;
+    color: var(--paper);
+    line-height: 1.05;
+    margin-bottom: 0.25rem;
+  }
+  .xroads-sub {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.6);
+    margin-bottom: 1.25rem;
+  }
+  .xroads-desc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(245,239,230,0.65);
+    margin-bottom: 1.75rem;
+    max-width: 560px;
+  }
+  .xroads-btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    background: var(--crimson);
+    color: #fff;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .xroads-btn:hover { background: #a82020; transform: translateY(-2px); }
+  @media (max-width: 600px) {
+    .xroads-inner { flex-direction: column; gap: 1.5rem; }
+    .xroads-cover { width: 140px; }
+  }
+
   /* ── CREDENTIAL STRIP ── */
   .credential-strip {
     background: rgba(201,168,76,.06);
@@ -1645,6 +1723,21 @@
   </div>
 </section>
 
+<!-- ── X-ROADS CTA ── -->
+<div class="xroads-cta reveal">
+  <div class="xroads-inner">
+    <div class="xroads-badge">Coming Soon</div>
+    <img src="covers/x-roads.jpg" alt="X-Roads cover" class="xroads-cover">
+    <div class="xroads-text">
+      <h2 class="xroads-title">X-Roads</h2>
+      <p class="xroads-sub">Pronounced Cross-Roads</p>
+      <p class="xroads-desc">Jerrard is at his lowest — defeated, grief-stricken, and refusing to face it. With emotional chaos closing in from every direction, he must choose between the one thing that keeps him standing — and the right thing to do.</p>
+      <a href="#contact" class="xroads-btn">Get Notified When It Drops &#8594;</a>
+    </div>
+  </div>
+</div>
+
+<hr class="section-rule">
 <!-- ── OTHER WORKS ── -->
 <section id="works">
   <div class="section-inner">
