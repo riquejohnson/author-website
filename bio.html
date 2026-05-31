@@ -30,6 +30,10 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all .3s; }
+    .page-hero { min-height:40vh; display:flex; align-items:center; justify-content:center; text-align:center; background: linear-gradient(to bottom,rgba(13,13,13,.82) 0%,rgba(13,13,13,.65) 55%,rgba(13,13,13,.96) 100%), url('covers/ljtext.jpg') center/cover no-repeat; padding:8rem 2rem 4rem; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .page-hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:700; color:#fff; line-height:1.1; margin-bottom:1rem; }
+    .page-hero-tagline { font-size:clamp(.95rem,2vw,1.15rem); color:rgba(255,255,255,.7); max-width:520px; margin:0 auto; font-weight:300; }
     .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.15; color: var(--dark); margin-bottom: 1rem; }
     .section-sub { color: var(--muted); max-width: 560px; font-size: 1.05rem; }
@@ -125,7 +129,15 @@
     </div>
   </nav>
 
-  <div style="background:var(--dark); padding:7rem 4% 6rem;">
+  <header class="page-hero">
+    <div>
+      <p class="page-hero-eyebrow">Official Author Website</p>
+      <h1 class="page-hero-title">Rique Johnson</h1>
+      <p class="page-hero-tagline">Thriller. Mystery. Fiction. A storyteller who makes every page count.</p>
+    </div>
+  </header>
+
+  <div style="background:var(--dark); padding:3rem 4% 6rem;">
     <div id="about">
       <div class="about-img-wrap">
         <img

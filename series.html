@@ -30,14 +30,21 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all .3s; }
-    section { padding: 7rem 4% 6rem; background: var(--dark); }
+    section { padding: 3rem 4% 6rem; background: var(--dark); }
+    .page-hero { min-height:40vh; display:flex; align-items:center; justify-content:center; text-align:center; background: linear-gradient(to bottom,rgba(13,13,13,.82) 0%,rgba(13,13,13,.65) 55%,rgba(13,13,13,.96) 100%), url('covers/ljtext.jpg') center/cover no-repeat; padding:8rem 2rem 4rem; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .page-hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:700; color:#fff; line-height:1.1; margin-bottom:1rem; }
+    .page-hero-tagline { font-size:clamp(.95rem,2vw,1.15rem); color:rgba(255,255,255,.7); max-width:520px; margin:0 auto; font-weight:300; }
+    .quote-band { background:rgba(201,168,76,.06); border-top:1px solid rgba(201,168,76,.15); border-bottom:1px solid rgba(201,168,76,.15); padding:3rem 4%; text-align:center; margin-bottom:3.5rem; }
+    .quote-band blockquote { font-family:'Playfair Display',serif; font-size:clamp(1.15rem,2.8vw,1.7rem); font-style:italic; color:#f9fafb; max-width:720px; margin:0 auto 1rem; line-height:1.55; }
+    .quote-band cite { font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); }
     .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3rem); font-weight: 700; line-height: 1.15; color: #f9fafb; margin-bottom: 1rem; }
     .section-sub { color: #9ca3af; max-width: 560px; font-size: 1.05rem; }
     .section-header { margin-bottom: 3.5rem; }
     .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 2rem; }
     .book-card { background: var(--dark2); border-radius: 12px; overflow: hidden; transition: transform .3s, box-shadow .3s; cursor: pointer; border: 1px solid rgba(255,255,255,.06); }
-    .book-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .book-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(201,168,76,.25); }
     .book-cover-wrap { position: relative; aspect-ratio: 2/3; overflow: hidden; background: #374151; }
     .book-cover-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
     .book-card:hover .book-cover-wrap img { transform: scale(1.05); }
@@ -106,7 +113,19 @@
     </div>
   </nav>
 
+  <header class="page-hero">
+    <div>
+      <p class="page-hero-eyebrow">Mystery &amp; Thriller</p>
+      <h1 class="page-hero-title">The Jason Jerrard Series</h1>
+      <p class="page-hero-tagline">Gripping detective fiction where love, justice, and danger collide on every page.</p>
+    </div>
+  </header>
+
   <section id="books">
+    <div class="quote-band">
+      <blockquote>"Masterfully plotted and artfully rendered... combines the action of a thriller with the deeply felt emotions of a love story."</blockquote>
+      <cite>— Simon &amp; Schuster</cite>
+    </div>
     <div class="section-header">
       <p class="section-label">Mystery &amp; Thriller</p>
       <h3 class="section-title" style="color:#cc0000; font-size:clamp(1.1rem,2.5vw,1.6rem);">books featuring Jason Jerrard</h3>

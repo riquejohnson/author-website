@@ -30,7 +30,14 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all .3s; }
-    section { padding: 7rem 4% 6rem; background: var(--dark); }
+    section { padding: 3rem 4% 6rem; background: var(--dark); }
+    .page-hero { min-height:40vh; display:flex; align-items:center; justify-content:center; text-align:center; background: linear-gradient(to bottom,rgba(13,13,13,.82) 0%,rgba(13,13,13,.65) 55%,rgba(13,13,13,.96) 100%), url('covers/ljtext.jpg') center/cover no-repeat; padding:8rem 2rem 4rem; }
+    .page-hero-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .page-hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:700; color:#fff; line-height:1.1; margin-bottom:1rem; }
+    .page-hero-tagline { font-size:clamp(.95rem,2vw,1.15rem); color:rgba(255,255,255,.7); max-width:520px; margin:0 auto; font-weight:300; }
+    .quote-band { background:rgba(201,168,76,.06); border-top:1px solid rgba(201,168,76,.15); border-bottom:1px solid rgba(201,168,76,.15); padding:3rem 4%; text-align:center; margin-bottom:3.5rem; }
+    .quote-band blockquote { font-family:'Playfair Display',serif; font-size:clamp(1.15rem,2.8vw,1.7rem); font-style:italic; color:#f9fafb; max-width:720px; margin:0 auto 1rem; line-height:1.55; }
+    .quote-band cite { font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); }
     .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3rem); font-weight: 700; line-height: 1.15; color: #f9fafb; margin-bottom: 1rem; }
     .section-sub { color: #9ca3af; max-width: 560px; font-size: 1.05rem; }
@@ -98,7 +105,19 @@
     </div>
   </nav>
 
+  <header class="page-hero">
+    <div>
+      <p class="page-hero-eyebrow">After Dark &amp; After Hours</p>
+      <h1 class="page-hero-title">Erotic Fiction</h1>
+      <p class="page-hero-tagline">Bold, sensual storytelling where passion meets the full complexity of love.</p>
+    </div>
+  </header>
+
   <section id="books">
+    <div class="quote-band">
+      <blockquote>"Once I let them read your book, they were drooling — but they completely understood the level of my sexual nature from that point."</blockquote>
+      <cite>— Lena, Reader</cite>
+    </div>
     <div id="after-dark" class="section-header">
       <p class="section-label">Erotic Literature</p>
       <h2 class="section-title" style="color:#cc0000; font-size:clamp(1rem,2vw,1.4rem);">After Dark &amp; After Hours</h2>
