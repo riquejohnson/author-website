@@ -1310,8 +1310,10 @@
     .bio-facts { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .footer-links { justify-content: center; }
-    .book-card .book-cover-art { width: 140px !important; }
-    .work-item-horizontal .work-spine { width: 140px !important; }
+    .book-card { flex-direction: column !important; }
+    .book-card .book-cover-art { width: 100% !important; aspect-ratio: 3/2; }
+    .work-item-horizontal { flex-direction: column !important; }
+    .work-item-horizontal .work-spine { width: 100% !important; aspect-ratio: 3/2; }
   }
 
   /* ── CREDENTIAL STRIP ── */
